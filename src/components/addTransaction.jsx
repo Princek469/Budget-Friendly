@@ -1,18 +1,18 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useState } from "react";
+import PropTypes from "prop-types";
 
 const AddTransaction = ({ transactions, updateTransactionHandler, isDarkMode }) => {
   const [label, setLabel] = useState('');
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState(getFormattedDate());
 
-  // Helper function to format date as MM/DD/YYYY
+  // Helper function to format date as YYYY-MM-DD (HTML5 date input format)
   function getFormattedDate() {
     const today = new Date();
-    const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
-    const day = String(today.getDate()).padStart(2, '0');
+    const month = String(today.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
+    const day = String(today.getDate()).padStart(2, "0");
     const year = today.getFullYear();
-    return `${month}/${day}/${year}`;
+    return `${year}-${month}-${day}`; // Format: YYYY-MM-DD
   }
 
   function generateID() {
@@ -21,6 +21,11 @@ const AddTransaction = ({ transactions, updateTransactionHandler, isDarkMode }) 
 
   function addTransactionHandler(e) {
     e.preventDefault();
+
+    if (!date) {
+      alert("Please select a valid date.");
+      return;
+    }
 
     const newTransaction = {
       id: generateID(),
@@ -33,20 +38,18 @@ const AddTransaction = ({ transactions, updateTransactionHandler, isDarkMode }) 
     updateTransactionHandler(newTransactions);
 
     // Reset fields after adding transaction
-    setLabel('');
-    setAmount('');
-    setDate(getFormattedDate());
+    setLabel("");
+    setAmount("");
+    setDate(""); // Reset date field to empty
   }
 
   return (
     <div
-      className={`shadow-lg rounded-lg p-6 mt-6 max-w-md mx-auto transition-colors duration-300 ${
-        isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'
+      className={`shadow-lg rounded-lg p-6 mt-6 ml-10 max-w-md mx-auto transition-colors duration-300 ${
+        isDarkMode ? "bg-white text-black" : "bg-black text-white"
       }`}
     >
-      <h3 className="text-2xl font-semibold mb-4">
-        Add New Transaction
-      </h3>
+      <h3 className="text-2xl font-semibold mb-4">Add New Transaction</h3>
       <form id="form" onSubmit={addTransactionHandler}>
         {/* Label Input */}
         <div className="mb-4">
@@ -63,8 +66,8 @@ const AddTransaction = ({ transactions, updateTransactionHandler, isDarkMode }) 
             placeholder="Enter label..."
             className={`rounded-md p-3 w-full focus:outline-none focus:ring-2 transition duration-200 ${
               isDarkMode
-                ? 'bg-gray-700 text-white border-gray-600 focus:ring-blue-300'
-                : 'border-gray-300 focus:ring-blue-500'
+                ? "bg-gray-700 text-white border-gray-600 focus:ring-blue-300"
+                : "border-gray-300 focus:ring-blue-500 text-black"
             }`}
           />
         </div>
@@ -85,8 +88,8 @@ const AddTransaction = ({ transactions, updateTransactionHandler, isDarkMode }) 
             placeholder="Enter amount..."
             className={`rounded-md p-3 w-full focus:outline-none focus:ring-2 transition duration-200 ${
               isDarkMode
-                ? 'bg-gray-700 text-white border-gray-600 focus:ring-blue-300'
-                : 'border-gray-300 focus:ring-blue-500'
+                ? "bg-gray-700 text-white border-gray-600 focus:ring-blue-300"
+                : "border-gray-300 focus:ring-blue-500 text-black"
             }`}
           />
         </div>
@@ -97,16 +100,15 @@ const AddTransaction = ({ transactions, updateTransactionHandler, isDarkMode }) 
             Date
           </label>
           <input
-            type="text"
+            type="date"
             id="date"
             required
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            placeholder="MM/DD/YYYY"
             className={`rounded-md p-3 w-full focus:outline-none focus:ring-2 transition duration-200 ${
               isDarkMode
-                ? 'bg-gray-700 text-white border-gray-600 focus:ring-blue-300'
-                : 'border-gray-300 focus:ring-blue-500'
+                ? "bg-gray-700 text-white border-gray-600 focus:ring-blue-300"
+                : "border-gray-300 focus:ring-blue-500 text-black"
             }`}
           />
         </div>
@@ -115,8 +117,8 @@ const AddTransaction = ({ transactions, updateTransactionHandler, isDarkMode }) 
         <button
           className={`font-bold py-2 px-4 rounded-md w-full transition duration-200 ${
             isDarkMode
-              ? 'bg-blue-600 hover:bg-blue-700 text-white'
-              : 'bg-blue-500 hover:bg-blue-600 text-white'
+              ? "bg-blue-600 hover:bg-blue-700 text-white"
+              : "bg-blue-500 hover:bg-blue-600 text-white"
           }`}
         >
           Add Transaction

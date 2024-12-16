@@ -88,13 +88,13 @@ function Login() {
     }
 
     return (
-        <div>
+        <div className="">
             <h1 className="text-6xl text-red-400 my-5 text-center font-extrabold">Budget Buddy</h1>
             <form
-                className="w-[380px] absolute px-9 py-4 bg-black my-20 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80"
+                className="w-[380px] absolute px-9 py-4 bg-black my-14 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80"
                 onSubmit={handleSignForm}
             >
-                <h2 className="text-3xl font-bold py-4 px-[3px]">
+                <h2 className="text-3xl text-white font-bold py-4 px-[3px]">
                     {isSignInForm ? "Sign In" : "Sign Up"}
                 </h2>
 

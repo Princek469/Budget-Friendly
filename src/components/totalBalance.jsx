@@ -45,23 +45,52 @@ const TotalBalance = (props) => {
   }, [props.transactions]);
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-6 mt-6 max-w-md mx-auto transition-transform transform hover:scale-105">
-      <h4 className="text-gray-600 text-lg font-semibold">Your Balance</h4>
-      <h1 className="text-4xl font-bold text-gray-800 mb-4" id="balance">
+    <div
+      className={`${
+        props.isDarkMode ? "bg-white text-black" : "bg-black text-white"
+      } shadow-lg rounded-lg p-4 mt-6 mr-6 max-w-sm mx-auto transition-transform transform hover:scale-105`}
+    >
+      <h4
+        className={`${
+          props.isDarkMode ? "text-black" : "text-white"
+        } text-lg font-semibold`}
+      >
+        Your Balance
+      </h4>
+      <h1
+        className={`${
+          props.isDarkMode ? "text-black" : "text-white"
+        } text-4xl font-bold mb-4`}
+        id="balance"
+      >
         {balance.total}
       </h1>
       <div className="flex justify-between mt-4">
         <div className="text-center">
-          <h4 className="text-gray-600">Income</h4>
-          <p id="money-plus" className="text-green-500 text-xl font-semibold">
+          <h4
+            className={`${
+              props.isDarkMode ? "text-black" : "text-white"
+            }`}
+          >
+            Income
+          </h4>
+          <p
+            id="money-plus"
+            className={`${
+              props.isDarkMode ? "text-green-400" : "text-green-500"
+            } text-xl font-semibold`}
+          >
             {balance.credit}
           </p>
         </div>
-       
       </div>
       <div className="flex justify-center mt-6">
         <button
-          className="bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-600 transition duration-200"
+          className={`${
+            props.isDarkMode
+              ? "bg-blue-600 hover:bg-blue-700"
+              : "bg-blue-500 hover:bg-blue-600"
+          } text-white font-bold py-2 px-4 rounded-md transition duration-200`}
           onClick={props.onViewDetails} // Call the function when clicked
         >
           View Details
@@ -74,6 +103,7 @@ const TotalBalance = (props) => {
 TotalBalance.propTypes = {
   transactions: PropTypes.array.isRequired,
   onViewDetails: PropTypes.func.isRequired, // Prop validation for the function
+  isDarkMode: PropTypes.bool.isRequired, // Add PropType validation for isDarkMode
 };
 
 export default TotalBalance;

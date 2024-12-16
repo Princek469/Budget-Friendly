@@ -57,13 +57,10 @@ function Expense() {
   return (
     <div
       className={`App p-4 sm:p-5 min-h-screen transition-colors duration-300 ${
-        isDarkMode ? "bg-black text-white" : "bg-gray text-black"
+        isDarkMode ? "bg-black text-white" : "bg-white text-black"
       }`}
     >
       {/* Header */}
-      <h2 className="text-center text-3xl sm:text-4xl font-bold mb-6">
-        Budget Buddy
-      </h2>
 
       {/* Responsive Flexbox Container */}
       <div className="flex flex-col sm:flex-row justify-center mt-24 gap-0 sm:gap-4">
@@ -71,12 +68,14 @@ function Expense() {
           <TotalBalance
             transactions={transactions}
             onViewDetails={toggleHistory}
+            isDarkMode={isDarkMode} // Pass the dark mode state to child
           />
         </div>
         <div className="w-full sm:w-1/2">
           <AddTransaction
             transactions={transactions}
             updateTransactionHandler={updateTransactionHandler}
+            isDarkMode={isDarkMode} // Pass the dark mode state to child
           />
         </div>
       </div>
@@ -87,6 +86,7 @@ function Expense() {
           <TransactionHistory
             transactions={transactions}
             removeTransactionHandler={removeTransactionHandler}
+            isDarkMode={isDarkMode} // Pass the dark mode state to child
           />
         </div>
       )}
