@@ -106,8 +106,6 @@ function Expense() {
       >
         {isDarkMode ? "Light Mode" : "Dark Mode"}
       </button>
-
-      <a href="/about" className="absolute top-5 right-64 bg-blue-500 text-white px-3 sm:px-4 py-2 rounded-lg font-bold text-sm sm:text-base transition-colors duration-300">About</a>
     </div>
   );
 }
