@@ -48,14 +48,14 @@ const TotalBalance = (props) => {
     <div
       className={`${
         props.isDarkMode ? "bg-white text-black" : "bg-black text-white"
-      } shadow-lg rounded-lg p-4 mt-6 mr-6 max-w-sm mx-auto transition-transform transform hover:scale-105`}
+      } shadow-lg rounded-lg flex flex-col justify-center align-middle p-4 mt-6  max-w-sm mx-auto transition-transform transform hover:scale-105`}
     >
       <h4
         className={`${
           props.isDarkMode ? "text-black" : "text-white"
         } text-lg font-semibold`}
       >
-        Your Balance
+        Total Expense
       </h4>
       <h1
         className={`${
@@ -65,14 +65,14 @@ const TotalBalance = (props) => {
       >
         {balance.total}
       </h1>
-      <div className="flex justify-between mt-4">
+      <div className="flex justify-between  mt-4">
         <div className="text-center">
           <h4
             className={`${
               props.isDarkMode ? "text-black" : "text-white"
             }`}
           >
-            Income
+            Expense
           </h4>
           <p
             id="money-plus"
